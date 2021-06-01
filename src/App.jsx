@@ -1,9 +1,12 @@
 import { Component } from "react";
+import { Provider } from "react-redux";
 
 import FieldSetPerson from "./components/FieldSetPerson";
 import FieldSetJob from "./components/FieldSetJob";
 
 import { INITIAL_STATE } from "./services/data";
+
+import store from './redux/store';
 
 class App extends Component {
   constructor() {
@@ -56,13 +59,15 @@ class App extends Component {
 
   render() {
     return (
-      <form>
-        <FieldSetPerson handleChangeState={this.handleChangeState} />
-        <FieldSetJob handleChangeState={this.handleChangeState} />
-        <button type="submit" onClick={this.handleSubmit}>Enviar</button>
-        <button type="button" onClick={() => this.handleClear()}>Limpar</button>
-        {this.state.renderDiv ? this.renderDiv() : ''}
-      </form>
+      <Provider store={store}>
+        <form>
+          <FieldSetPerson handleChangeState={this.handleChangeState} />
+          <FieldSetJob handleChangeState={this.handleChangeState} />
+          <button type="submit" onClick={this.handleSubmit}>Enviar</button>
+          <button type="button" onClick={() => this.handleClear()}>Limpar</button>
+          {this.state.renderDiv ? this.renderDiv() : ''}
+        </form>
+      </Provider>
     );
   }
 }
