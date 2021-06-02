@@ -1,20 +1,12 @@
-import { CLEAR_FORM, SUBMIT_FORM } from '../actions';
+import { INITIAL_STATE } from '../../services/data';
 
-const INITIAL_STATE = {
-  renderDiv: false,
-  nome: '',
-  email: '',
-  cpf: '',
-  home: '',
-  resume: '',
-  job: '',
-  jobDescription: '',
-};
+import { CLEAR_FORM } from '../actions/clearForm';
+import { SUBMIT_FORM } from '../actions/submitForm';
 
 function formReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case SUBMIT_FORM:
-      return {...state, ...action.payload};
+      return { ...action.payload };
     case CLEAR_FORM:
         return INITIAL_STATE;
     default:
